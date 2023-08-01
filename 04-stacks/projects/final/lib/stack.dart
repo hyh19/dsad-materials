@@ -2,11 +2,11 @@
 // For full license & permission details, see LICENSE.
 
 class Stack<E> {
+  final List<E> _storage;
+
   Stack() : _storage = <E>[];
 
   Stack.of(Iterable<E> elements) : _storage = List<E>.of(elements);
-
-  final List<E> _storage;
 
   void push(E element) => _storage.add(element);
 
