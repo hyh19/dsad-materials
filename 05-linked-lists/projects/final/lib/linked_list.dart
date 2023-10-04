@@ -2,9 +2,10 @@
 // For full license & permission details, see LICENSE.
 
 class Node<T> {
-  Node({required this.value, this.next});
   T value;
   Node<T>? next;
+
+  Node({required this.value, this.next});
 
   @override
   String toString() {
@@ -13,7 +14,9 @@ class Node<T> {
     while (true) {
       buffer.write(currentNode?.value);
       currentNode = currentNode?.next;
-      if (currentNode == null) break;
+      if (currentNode == null) {
+        break;
+      }
       buffer.write(' -> ');
     }
     return buffer.toString();
@@ -67,7 +70,9 @@ class LinkedList<E> extends Iterable<E> {
   }
 
   E? removeLast() {
-    if (head?.next == null) return pop();
+    if (head?.next == null) {
+      return pop();
+    }
 
     var current = head;
     while (current!.next != tail) {
@@ -97,25 +102,28 @@ class LinkedList<E> extends Iterable<E> {
 
   @override
   String toString() {
-    if (isEmpty) return 'Empty list';
+    if (isEmpty) {
+      return 'Empty list';
+    }
     return head.toString();
   }
 }
 
 class _LinkedListIterator<E> implements Iterator<E> {
-  _LinkedListIterator(LinkedList<E> list) : _list = list;
   final LinkedList<E> _list;
-
   Node<E>? _currentNode;
+  bool _firstPass = true;
+
+  _LinkedListIterator(LinkedList<E> list) : _list = list;
 
   @override
   E get current => _currentNode!.value;
 
-  bool _firstPass = true;
-
   @override
   bool moveNext() {
-    if (_list.isEmpty) return false;
+    if (_list.isEmpty) {
+      return false;
+    }
 
     if (_firstPass) {
       _currentNode = _list.head;
