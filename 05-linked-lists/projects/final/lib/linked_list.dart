@@ -52,7 +52,7 @@ class LinkedList<E> extends Iterable<E> {
   }
 
   Node<E> insertAfter(Node<E> node, E value) {
-    if (tail == node) {
+    if (node == tail) {
       append(value);
       return tail!;
     }
